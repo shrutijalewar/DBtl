@@ -1,5 +1,4 @@
 # Created by .gitignore support plugin (hsz.mobinpm install grunt --save
 node_modules/
 .idea/
-bower_components/
 public/
