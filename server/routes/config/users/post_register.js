@@ -9,12 +9,14 @@ module.exports = {
   tags: ['user', 'register'],
   validate: {
       payload: {
-          username: Joi.string(),
-          password: Joi.string()
+          password: Joi.string().min(3).required(),
+          email: Joi.string().required()
       }
   },
   handler: function(request, reply){
-      //register user
-      reply('OK');
+      User.register(request.payload, function(err, user){
+              reply(user);
+          });
   }
 };
+

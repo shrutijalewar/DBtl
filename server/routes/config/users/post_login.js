@@ -9,12 +9,14 @@ module.exports = {
     tags: ['user', 'login'],
     validate: {
         payload: {
-            username: Joi.string(),
-            password: Joi.string()
+            password: Joi.string().min(3).required(),
+            email: Joi.string().required()
         }
     },
     handler: function(request, reply){
-        //login a user
-        reply('OK');
+        User.findOne(request.payload, function(err, user){
+            reply(user);
+        });
     }
 };
+

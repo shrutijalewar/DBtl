@@ -13,3 +13,4 @@ module.exports = [
     {method: 'delete', path: '/search',                  config: require('./config/search/delete_search')},
     {method: 'get',    path: '/slideshow/{searchId}',   config: require('./config/slideshow/get_slideshow')}
 ];
+
