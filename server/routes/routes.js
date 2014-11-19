@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = [
-    {method: 'get',    path: '/',                        config: require('./config/home/get_home')},
+    {method: 'get',    path: '/{param*}', handler: {directory: {path: '../public'}}},
     {method: 'post',   path: '/register',                config: require('./config/users/post_register')},
     {method: 'post',   path: '/login',                   config: require('./config/users/post_login')},
     //{method: 'get',    path: '/auth',                  config: require('./config/users/get_auth')},
