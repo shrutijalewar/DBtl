@@ -9,23 +9,14 @@ module.exports = {
     tags: ['user', 'login'],
     validate: {
         payload: {
-            username: Joi.string().min(3).required(),
             password: Joi.string().min(3).required(),
-            email: Joi.string().required
+            email: Joi.string().required()
         }
     },
-    auth: {
-        mode: 'try',
-        strategy: 'session'
-    },
-    plugins: {
-      'hapi-auth-cookie': {
-          redirectTo: false
-      }
-    },
     handler: function(request, reply){
-
-        //login a user
-        reply('OK');
+        User.findOne(request.payload, function(err, user){
+            reply(user);
+        });
     }
 };
+

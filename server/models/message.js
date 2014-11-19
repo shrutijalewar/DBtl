@@ -9,3 +9,4 @@ module.exports = mongoose.model('Message', {
                                              img:    {},
                                              isRead: {}
                                             });
+

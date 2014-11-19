@@ -15,3 +15,4 @@ module.exports = [
     {method: 'put',    path: '/tasks/{id}', config: require('./config/tasks/put_task')}
 */
 ];
+

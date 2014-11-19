@@ -1,61 +1,22 @@
 'use strict';
 
-var mongoose = require('mongoose');
-var Schema = mongoose.Schema;
+var mongoose   = require('mongoose'),
+     Bcrypt    = require('bcrypt'),
+    Schema =  mongoose.Schema,
+    UserSchema = new Schema({email: String, password: String}),
+    User       = mongoose.model('User', UserSchema);
 
-var UserSchema = new Schema({
-    name: String,
-    username: {type: String,    unique: true,   required: true},
-    email: {type: String,       unique: true,   required: true},
-    password: {type: String,    required: true},
-    salt: {type: String,        required: true}
-});
-
-UserSchema.statics.resisterUser = function(obj, cb) {
-    var User = this || mongoose.model('User');
-    User.findOne({email: email}, cb);
-};
-UserSchema.statics.login = function (request, reply) {
-
-    if (request.auth.isAuthenticated) {
-        return reply.redirect('/');
-    }
-
-    var message = '';
-    var account = null;
-
-        if (!request.payload.username || !request.payload.password) {
-
-            message = 'Missing username or password';
-        }
-        else {
-            account = users[request.payload.username];
-            if (!account ||
-                account.password !== request.payload.password) {
-
-                message = 'Invalid username or password';
-            }
-        }
-};
-
-    //UserSchema.methods.findSameName = function (cb) {
-        //return this.model('User').find({name: this.name}, cb);
-    //};
-UserSchema.statics.logout = function (request, reply) {
-
-    request.auth.session.clear();
-    return reply.redirect('/');
-};
-
-//mongoose.model('User', UserSchema);
-
-//var User = mongoose.model('User');
-
-/*User.findByEmail('test@test.com', function(err, user) {
-    if(user) {
-        user.findSameName(function(err, users) {
-            // do something
+User.register  = function(obj, cb){
+    this.findOne({email: obj.email}, function(err, user){
+        if(user || obj.password.length < 3 || err){return cb(err);}
+        obj.password = Bcrypt.hashSync(obj.password, 10);
+        user =new User(obj);
+        user.save(function(err){
+            cb(err, user);
         });
-    }
-});*/
-module.exports = mongoose.model('User', UserSchema);
+    });
+};
+
+module.exports = User;
+
+
