@@ -14,7 +14,17 @@ module.exports = {
             email: Joi.string().required
         }
     },
+    auth: {
+        mode: 'try',
+        strategy: 'session'
+    },
+    plugins: {
+      'hapi-auth-cookie': {
+          redirectTo: false
+      }
+    },
     handler: function(request, reply){
+
         //login a user
         reply('OK');
     }

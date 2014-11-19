@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = [
-    /*{
+    {
         plugin: require('good'),
         options: {
             reporters: [{
@@ -9,8 +9,8 @@ module.exports = [
                 args: [{log: '*', request: '*'}]
             }]
         }
-    },*/
+    },
     {
-        register: require('lout')
+        plugin: require('lout')
     }
 ];
