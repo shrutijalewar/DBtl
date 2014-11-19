@@ -9,8 +9,9 @@ module.exports = {
     tags: ['user', 'login'],
     validate: {
         payload: {
-            username: Joi.string(),
-            password: Joi.string()
+            username: Joi.string().min(3).required(),
+            password: Joi.string().min(3).required(),
+            email: Joi.string().required
         }
     },
     handler: function(request, reply){

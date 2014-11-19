@@ -5,51 +5,57 @@ var Schema = mongoose.Schema;
 
 var UserSchema = new Schema({
     name: String,
-
-    username: {
-        type: String,
-        unique: true,
-        required: true
-    },
-
-    email: {
-        type: String,
-        unique: true
-    },
-
-    password: {
-        type: String,
-        required: true
-    },
-
-    salt: {
-        type: String,
-        required: true
-    }
-
+    username: {type: String,    unique: true,   required: true},
+    email: {type: String,       unique: true,   required: true},
+    password: {type: String,    required: true},
+    salt: {type: String,        required: true}
 });
-UserSchema.statics.findByEmail = function(email, cb) {
+
+UserSchema.statics.resisterUser = function(obj, cb) {
     var User = this || mongoose.model('User');
     User.findOne({email: email}, cb);
 };
+UserSchema.statics.login = function (request, reply) {
 
-UserSchema.methods.findSameName = function(cb) {
-    return this.model('User').find({name: this.name}, cb);
+    if (request.auth.isAuthenticated) {
+        return reply.redirect('/');
+    }
+
+    var message = '';
+    var account = null;
+
+        if (!request.payload.username || !request.payload.password) {
+
+            message = 'Missing username or password';
+        }
+        else {
+            account = users[request.payload.username];
+            if (!account ||
+                account.password !== request.payload.password) {
+
+                message = 'Invalid username or password';
+            }
+        }
 };
 
-mongoose.model('User', UserSchema);
+    //UserSchema.methods.findSameName = function (cb) {
+        //return this.model('User').find({name: this.name}, cb);
+    //};
+UserSchema.statics.logout = function (request, reply) {
 
-var User = mongoose.model('User');
+    request.auth.session.clear();
+    return reply.redirect('/');
+};
 
-User.findByEmail('test@test.com', function(err, user) {
+//mongoose.model('User', UserSchema);
+
+//var User = mongoose.model('User');
+
+/*User.findByEmail('test@test.com', function(err, user) {
     if(user) {
         user.findSameName(function(err, users) {
             // do something
         });
     }
-});
-module.exports = mongoose.model('User', {
-                                          username: {},
-                                          password: {},
-                                          images:   {}
-                                        });
+});*/
+module.exports = mongoose.model('User', UserSchema);
