@@ -1,10 +1,10 @@
 'use strict';
 
 module.exports = [
-    {method: 'get',    path: '/',           config: require('./config/home/get_home')},
+    {method: 'get',    path: '/{param*}', handler: {directory: {path: '../public'}}},
     {method: 'post',   path: '/register',   config: require('./config/users/post_register')},
-    {method: 'post',   path: '/login',      config: require('./config/users/post_login')},
-/*
+    {method: 'post',   path: '/login',      config: require('./config/users/post_login')}/*,
+
     {method: 'get',    path: '/about',      config: require('./config/home/get_about')},
     {method: 'post',   path: '/priorities', config: require('./config/priorities/post_priorities')},
     {method: 'get',    path: '/priorities', config: require('./config/priorities/get_priorities')},

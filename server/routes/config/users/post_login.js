@@ -1,7 +1,7 @@
 'use strict';
 
-var Joi = require('joi'),
-    User = require('../../../models/user');
+var Joi = require('joi');
+    //User = require('../../../models/user');
 
 module.exports = {
     description: 'Login',
@@ -13,7 +13,17 @@ module.exports = {
             password: Joi.string()
         }
     },
+    //auth: {
+        //mode: 'try',
+        //strategy: 'session'
+    //},
+    plugins: {
+      'hapi-auth-cookie': {
+          redirectTo: false
+      }
+    },
     handler: function(request, reply){
+
         //login a user
         reply('OK');
     }
