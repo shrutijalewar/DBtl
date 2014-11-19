@@ -5,7 +5,6 @@ var request   = require('request').defaults({encoding: null}),
     async     = require('async'),
     //url       = require('url'),
     imagesSrc = [],
-    //images    = [],
     tagSrc    = [];
 
 request('http://www.rottentomatoes.com/', function(error, response, html){
