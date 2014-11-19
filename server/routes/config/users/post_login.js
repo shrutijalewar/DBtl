@@ -1,7 +1,7 @@
 'use strict';
 
-var Joi = require('joi');
-    //User = require('../../../models/user');
+var Joi = require('joi'),
+    User = require('../../../models/user');
 
 module.exports = {
     description: 'Login',
@@ -9,22 +9,15 @@ module.exports = {
     tags: ['user', 'login'],
     validate: {
         payload: {
-            username: Joi.string(),
-            password: Joi.string()
+            password: Joi.string().min(3).required(),
+            email: Joi.string().required()
         }
     },
-    auth: {
-        mode: 'try',
-        strategy: 'session'
-    },
-    plugins: {
-      'hapi-auth-cookie': {
-          redirectTo: false
-      }
-    },
     handler: function(request, reply){
-
-        //login a user
-        reply('OK');
+        User.findOne(request.payload, function(err, user){
+            reply(user);
+        });
     }
 };
+
+
