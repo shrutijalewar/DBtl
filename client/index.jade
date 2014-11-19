@@ -1,3 +1,29 @@
-//
-   Created by DennisStanley on 11/19/14.
+doctype html
+html(ng-app='dbtl', lang='en')
+   head
+      meta(charset='utf=8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      title DBtl
+      link(href='/vendor/foundation/css/normalize.css')
+      link(href='/vendor/foundation/css/foundation.css')
+      link(href='/index.css', rel='stylesheet')
+      link(href='/vendor/fontawesome/font-awesome.min.css', rel='stylesheet')
+      link(href='/vendor/toastr/toastr.css', rel='stylesheet')
+   body
+      include nav
+      .container
+         #container(ng-view, ng-cloak)
+      footer
 
+      script(src='/config/toastr.js')
+      script(src='/vendor/jquery/dist/jquery.min.js')
+      script(src='/vendor/angular/angular.min.js')
+      script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
+      script(src='/vendor/fastclick/lib/fastclick.js')
+      script(src='/vendor/modernizr/modernizr.js')
+      script(src='/vendor/foundation/js/foundation.min.js')
+      script(src='/vendor/localforage/dist/localforage.min.js')
+      script(src='/vendor/angular-localforage/dist/angular-localForage.min.js')
+      script(src='/index.js')
+      script(src='/views/home/home.js')
