@@ -13,10 +13,16 @@ server.route(routes);
     path: '../public'
 });*/
 
+
+
+
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){
-    server.start(function(){
+      server.start(function(){
+          server.auth.strategy('simple', 'basic', {validateFunc: require('./lib/security')});
       server.log('info', 'Server running at: ' + server.info.uri);
     });
   });
 });
+
+

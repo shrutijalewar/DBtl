@@ -6,7 +6,8 @@ module.exports = {
     tags:      ['home'],
   //auth: 'session',
     handler: function(request, reply){
-        //reply('home');
         reply.view('index.html');
     }
 };
+
+
