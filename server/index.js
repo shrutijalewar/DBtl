@@ -7,6 +7,11 @@ var Hapi       = require('hapi'),
     mongoose   = require('mongoose').connect(process.env.DB);
 
 server.route(routes);
+/*server.views({
+    engines: {},
+    basePath: __dirname,
+    path: '../public'
+});*/
 
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){

@@ -8,16 +8,18 @@ html(ng-app='dbtl', lang='en')
       link(href='/vendor/foundation/css/normalize.css')
       link(href='/vendor/foundation/css/foundation.css')
       link(href='/index.css', rel='stylesheet')
-      link(href='/vendor/fontawesome/font-awesome.min.css', rel='stylesheet')
-      link(href='/vendor/toastr/toastr.css', rel='stylesheet')
+      link(href='/vendor/fontawesome/css/font-awesome.min.css', rel='stylesheet')
+      link(href='/vendor/toastr/toastr.min.css', rel='stylesheet')
    body
       include nav
+      h1 YO YO!
       .container
          #container(ui-view)
       footer
 
-      script(src='/config/toastr.js')
       script(src='/vendor/jquery/dist/jquery.min.js')
+      script(src='/vendor/toastr/toastr.min.js')
+      script(src='/config/toastr.js')
       script(src='/vendor/angular/angular.min.js')
       script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
       script(src='/vendor/fastclick/lib/fastclick.js')
@@ -26,4 +28,9 @@ html(ng-app='dbtl', lang='en')
       script(src='/vendor/localforage/dist/localforage.min.js')
       script(src='/vendor/angular-localforage/dist/angular-localForage.min.js')
       script(src='/index.js')
-      script(src='/views/home/home.js')
+      script(src='views/home/home.js')
+      script(src='views/auth/auth.js')
+      script(src='views/profile/profile.js')
+      script(src='views/slideshow/slideshow.js')
+      script(src='views/message/message.js')
+      script(src='views/dashboard/dashboard.js')
