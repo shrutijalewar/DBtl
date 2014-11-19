@@ -6,6 +6,8 @@ module.exports = {
     tags:      ['home'],
   //auth: 'session',
     handler: function(request, reply){
-        reply({data: 'Home Page'});
+        reply.view('index.html');
     }
 };
+
+
