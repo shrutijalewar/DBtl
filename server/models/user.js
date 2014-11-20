@@ -2,21 +2,40 @@
 
 var mongoose   = require('mongoose'),
      Bcrypt    = require('bcrypt'),
-    Schema =  mongoose.Schema,
-    UserSchema = new Schema({email: String, password: String}),
-    User       = mongoose.model('User', UserSchema);
+    User       = null,
+    UserSchema = new mongoose.Schema({
+    username:  {type: String, required: true, validate: [usernameV, 'username length'], unique: true},
+    password:  {type: String, required: true, validate: [passwordV, 'password length']},
+    createdAt: {type: Date,  required: true, default: Date.now}
+    });
 
-User.register  = function(obj, cb){
-    this.findOne({email: obj.email}, function(err, user){
-        if(user || obj.password.length < 3 || err){return cb(err);}
-        obj.password = Bcrypt.hashSync(obj.password, 10);
-        user =new User(obj);
-        user.save(function(err){
-            cb(err, user);
-        });
+UserSchema.methods.encrypt = function(){
+    this.password = Bcrypt.hashSync(this.password, 10);
+};
+
+UserSchema.statics.login  = function(obj, cb){
+    console.log('++++++++++++++++++oooo',obj.username);
+    User.findOne({username: obj.username}, function(err, user){
+        console.log('++++++++++++++++++++++',user);
+        if(user){
+            return cb(user);
+        }
+        var isGood = Bcrypt.compareSync(obj.password, user.password);
+        if(!isGood){
+            return cb();
+        }
+        cb(user);
     });
 };
 
-module.exports = User;
+function usernameV(v){
+    return v.length >= 3 && v.length <= 12;
+}
 
+function passwordV(v){
+    return v.length === 60;
+}
+
+User = mongoose.model('User', UserSchema);
+module.exports = User;
 
