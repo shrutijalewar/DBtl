@@ -13,10 +13,6 @@ module.exports = {
             password: Joi.string()
         }
     },
-    auth: {
-        mode: 'try',
-        strategy: 'session'
-    },
     plugins: {
       'hapi-auth-cookie': {
           redirectTo: false
