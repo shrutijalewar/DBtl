@@ -1,14 +1,30 @@
 'use strict';
 
 //var Joi = require('joi'),
-//    User = require('../../../models/user');
+
+var Search = require('../../../models/search'),
+    Message = require('../../../models/message'),
+    userId = '000000000000000000000001';
 
 module.exports = {
-    description: 'Register',
-    notes: 'Register a User',
-    tags: ['user', 'register'],
+    description: 'All Searches',
+    notes: 'All Searches',
+    tags:['searches'],
     handler: function(request, reply){
-        //register user
-        reply('OK');
+        Search.find(function(err, searches){
+            reply({searches:searches});
+
+        });
+    }
+};
+
+module.exports = {
+    description: 'All Messages',
+    notes: 'All Messages',
+    tags:['get','messages'],
+    handler: function(request, reply){
+        Message.find({toId: userId}, function(err, messages){
+            reply({messages:messages});
+        });
     }
 };

@@ -1,9 +1,9 @@
 'use strict';
 
 var Joi  = require('joi'),
-    testSearch = require('../../../testSearch/search_test.js'),
-    Search = require('../../../../models/search.js'),
-    auth = 'b000000000000000000000001';
+    testSearch = require('../../../test_files/search_test.js'),
+    Search = require('../../../models/search.js');
+    //auth = 'b000000000000000000000001';
 
 module.exports = {
     description: 'Post a Search',
@@ -18,11 +18,14 @@ module.exports = {
     //    mode: 'try'
     //},
     handler: function(request, reply){
-        var search = new Search(request.payload);
+        //var search = new Search(request.payload);
         //search.crawl(payload.url, payload.depth, [], 0, function(err, results){
-            search.create(testSearch, auth, function(err, search){
+            console.log(request.payload);
+            testSearch.userId = '000000000000000000000001';
+            Search.create(testSearch, function(err, search){
                if(err){
-                   reply.code(401);
+                   console.log(err);
+                   reply().code(401);
                } else {
                    reply(search);
                }
