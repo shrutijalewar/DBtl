@@ -4,8 +4,7 @@ module.exports = {
   description: 'Home',
     notes:     'The Home Page',
     tags:      ['home'],
-  //auth: 'session',
     handler: function(request, reply){
-        reply.view('index.html');
+      reply.view('index.html');
     }
 };

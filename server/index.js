@@ -6,7 +6,6 @@ var Hapi       = require('hapi'),
     plugins    = require('./routes/plugins'),
     mongoose   = require('mongoose').connect(process.env.DB);
 
-server.route(routes);
 /*server.views({
     engines: {},
     basePath: __dirname,
@@ -18,8 +17,9 @@ server.route(routes);
 
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){
-      server.start(function(){
-          server.auth.strategy('simple', 'basic', {validateFunc: require('./lib/security')});
+    server.route(routes);
+    server.auth.strategy('simple', 'basic', {validateFunc: require('./lib/security')});
+    server.start(function(){
       server.log('info', 'Server running at: ' + server.info.uri);
     });
   });
