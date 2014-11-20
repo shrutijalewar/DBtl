@@ -1,0 +1,45 @@
+doctype html
+//if IE 9
+  html.lt-ie10(lang='en')
+html.no-js(ng-app='dbtl', lang='en')
+   head
+      meta(charset='utf=8')
+      meta(http-equiv='X-UA-Compatible', content='IE=edge')
+      meta(name='viewport', content='width=device-width, initial-scale=1')
+      title DBtl
+      link(href='/vendor/foundation/css/normalize.css', rel='stylesheet')
+      link(href='/vendor/foundation/css/foundation.css', rel='stylesheet')
+      link(href='/vendor/fontawesome/css/font-awesome.min.css', rel='stylesheet')
+      link(href='/vendor/toastr/toastr.min.css', rel='stylesheet')
+      link(href='/index.css', rel='stylesheet')
+      script(src='/vendor/foundation/js/vendor/modernizr.js')
+   body
+      .row
+         .small-12.columns.navigation
+            include nav
+      .row
+         .large-12.medium-12.small-12.columns.bkgrd-img(data-interchange="[/assets/dbtl-sm.png, (small)], [/assets/dbtl-md.png, (medium)], [/assets/dbtl.png, (large)]")
+            div(ui-view)
+      footer
+
+      script(src='/vendor/jquery/dist/jquery.min.js')
+      script(src='/vendor/foundation/js/foundation.min.js')
+      script(src='/vendor/foundation/js/foundation/foundation.topbar.js')
+      script(src='/vendor/angular/angular.min.js')
+      script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
+      script(src='/vendor/angular-localforage/dist/angular-localForage.min.js')
+      script(src='/vendor/localforage/dist/localforage.min.js')
+      script(src='/vendor/toastr/toastr.min.js')
+
+      script(src='/config/toastr.js')
+      script(src='/index.js')
+      script(src='/nav.js')
+      script(src='views/home/home.js')
+      script(src='views/auth/auth.js')
+      script(src='views/profile/profile.js')
+      script(src='views/slideshow/slideshow.js')
+      script(src='views/message/message.js')
+      script(src='views/dashboard/dashboard.js')
+
+      script.
+         $(document).foundation();

@@ -5,7 +5,7 @@ module.exports = {
     notes:     'The Home Page',
     tags:      ['home'],
     handler: function(request, reply){
-        reply({data: 'Home Page'});
+      reply.view('index.html');
     }
 };
 
