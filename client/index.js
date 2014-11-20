@@ -8,7 +8,7 @@
             $stateProvider
 
                 .state('home',         {url:'/',                 templateUrl:'/views/home/home.html',               controller: 'HomeCtrl'})
-                .state('auth',         {url:'/auth',             templateUrl:'/views/auth/auth.html',               controller: 'AuthCtrl'})
+                //.state('auth',         {url:'/auth',             templateUrl:'/views/auth/auth.html',               controller: 'AuthCtrl'})
                 .state('login',        {url:'/login',            templateUrl:'/views/auth/login.html',              controller: 'AuthCtrl'})
                 .state('register',     {url:'/register',         templateUrl:'/views/auth/register.html',           controller: 'AuthCtrl'})
                 .state('dashboard',  {url:'/dashboard',          templateUrl:'/views/dashboard/dashboard.html',     controller:'DashCtrl'})
