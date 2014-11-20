@@ -17,21 +17,5 @@
                 .state('slideshow',  {url:'/slideshow',          templateUrl:'views/slideshow/slideshow.html',      controller:'SlideCtrl'});
 
             $localForageProvider.config({name:'dbtl', storeName:'cache', version:1.0});
-            //$httpProvider.interceptors.push('HttpInterceptor');
         }]);
-        /*.run(['User', '$rootScope', function(User, $rootScope){
-
-            $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams){
-            });
-
-            $rootScope.$on('$stateNotFound', function(event, unfoundState, fromState, fromParams){
-            });
-
-            $rootScope.$on('$stateChangeSuccess', function(event, toState, toParams, fromState, fromParams){
-            });
-
-            $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error){
-            });
-
-        }]);*/
 })();
