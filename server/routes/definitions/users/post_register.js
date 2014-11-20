@@ -10,13 +10,18 @@ module.exports = {
   validate: {
       payload: {
           password: Joi.string().min(3).required(),
-          email: Joi.string().required()
+          username: Joi.string().min(3).max(15).required()
       }
   },
+    auth: {
+        mode: 'try'
+    },
   handler: function(request, reply){
-      User.register(request.payload, function(err, user){
-              reply(user);
-          });
+      var user = new User(request.payload);
+      user.encrypt();
+      user.save(function(err){
+          reply().code(err ? 401 : 200);
+      });
   }
 };
 

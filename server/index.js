@@ -1,26 +1,18 @@
 'use strict';
 
 var Hapi       = require('hapi'),
-    server     = new Hapi.Server('localhost', process.env.PORT),
-    routes     = require('./routes/routes'),
-    plugins    = require('./routes/plugins'),
+    server     = new Hapi.Server(process.env.PORT),
+    routes     = require('./routes/config/routes'),
+    plugins    = require('./routes/config/plugins'),
+    authentication = require('./routes/config/authentication'),
     mongoose   = require('mongoose').connect(process.env.DB);
-
-/*server.views({
-    engines: {},
-    basePath: __dirname,
-    path: '../public'
-});*/
-
-
-
 
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){
-    server.route(routes);
-    server.auth.strategy('simple', 'basic', {validateFunc: require('./lib/security')});
-    server.start(function(){
-      server.log('info', 'Server running at: ' + server.info.uri);
+      server.auth.strategy('session', 'cookie', true, authentication);
+      server.route(routes);
+      server.start(function(){
+      server.log('info',  server.info.uri);
     });
   });
 });
