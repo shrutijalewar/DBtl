@@ -1,17 +1,33 @@
 @import 'variables.less';
+@import url(http://fonts.googleapis.com/css?family=Shojumaru);
+// General styles -------------------------------->
 body {
   margin: 0;
   background-color: #D0BEA9;
-  max-width: 80rem
-}
-.row {
-  width: 100%;
   max-width: 80rem;
+
+  .row {
+    width: 100%;
+    max-width: 80rem;
+  }
+  h1 {
+    font-family: 'Shojumaru', cursive;
+  }
+  h1.splash {
+    font-size: 6em;
+    color: @green;
+    text-align: left;
+    margin-left: 50px;
+  }
 }
+// End General -------------------------------->
+// Navigation --------------------------------->
 .navigation {
   margin: 0;
   padding: 0;
 }
+// End Navigation -------------------------------->
+// Home --------------------------------->
 .bkgrd-img {
   background-color: @verywhite;
   background-image: url('/assets/dbtl.png');
@@ -21,3 +37,4 @@ body {
   border: 1px solid @lite-brown;
   margin: 0 auto;
 }
+// End ----------------------------------->
