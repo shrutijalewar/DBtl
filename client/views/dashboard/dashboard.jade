@@ -1,3 +1,52 @@
 #dashboard
-    h1 DASHBOARD
+    .small-12.columns
+        h1 Dashboard
+    .large-12.columns
+        .medium-6.columns
+            form
+                fieldset
+                    legend Add a Crawl Query
+                    .row.collapse
+                        .small-3.large-2.columns
+                            .prefix http://
+                        .small-9.large-10.columns
+                            input(type="text", placeholder="Enter your URL...")
+                    .row.collapse.postfix-round
+                        .small-9.large-9.columns
+                            select
+                                option(value="") Depth of Inception
+                                option(value="1") 1
+                                option(value="2") 2
+                                option(value="3") 3
+                                option(value="4") 4
+                        .small-3.columns
+                            a(href="#" class="button postfix") Add
+
+        .medium-6.columns
+            .large-6.columns.greeting
+                h2 Hey Username!
+                h3 Let's get Crawling!
+            .large-6.columns.profile-pic
+                img(src='', alt='')
+    .large-12.columns
+        .medium-6.columns
+            .top
+                h3 Previous Queries
+                ul
+                    li Search 1
+                    li Search 2
+                    li Search 3
+            .bottom
+                .graph
+        .medium-6.columns
+            .top
+            h3 Inbox
+            ul
+                li Message 1
+                li Message 2
+        .bottom
+
+
+
+
 
