@@ -13,7 +13,7 @@ UserSchema.methods.encrypt = function(){
     this.password = Bcrypt.hashSync(this.password, 10);
 };
 
-User.statics.login  = function(obj, cb){
+UserSchema.statics.login  = function(obj, cb){
     this.findOne({username: obj.username}, function(err, user){
         if(user){
             return cb();
