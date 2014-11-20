@@ -16,7 +16,6 @@
                 .state('message',    {url:'/message',            templateUrl:'views/message/message.html',          controller:'MessageCtrl'})
                 .state('slideshow',  {url:'/slideshow',          templateUrl:'views/slideshow/slideshow.html',      controller:'SlideCtrl'});
 
-            $httpProvider.interceptors.push('HttpInterceptor');
             $localForageProvider.config({name:'dbtl', storeName:'cache', version:1.0});
         }]);
 })();

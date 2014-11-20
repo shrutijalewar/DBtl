@@ -17,10 +17,12 @@ module.exports = {
         mode: 'try'
     },
     handler: function(request, reply){
+        console.log('>>>>>>>>>>>>>Ppppp',request.payload);
         User.login(request.payload, function(user){
+            console.log('>>>>>>>>>>>>>',user);
            if(user){
                request.auth.session.set(user);
-               reply();
+               reply(user);
            }else{
                reply().code(401);
            }

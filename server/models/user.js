@@ -14,9 +14,11 @@ UserSchema.methods.encrypt = function(){
 };
 
 UserSchema.statics.login  = function(obj, cb){
-    this.findOne({username: obj.username}, function(err, user){
+    console.log('++++++++++++++++++oooo',obj.username);
+    User.findOne({username: obj.username}, function(err, user){
+        console.log('++++++++++++++++++++++',user);
         if(user){
-            return cb();
+            return cb(user);
         }
         var isGood = Bcrypt.compareSync(obj.password, user.password);
         if(!isGood){
