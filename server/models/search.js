@@ -47,6 +47,24 @@ SearchSchema.statics.crawl = function(urls, imgs, index, depth, cb){
     });
 };
 
+SearchSchema.statics.crawlUrls = function(urls, index, depth, cb){
+    request(urls[0], function(error, response, html){
+        if (!error && response.statusCode === 200) {
+            var $ = cheerio.load(html);
+            $('a').each(function () {
+                var tag = $(this).attr('href');
+                if (tag && tag.substring(0, 4) === 'http') {
+                    urls.push(tag);
+                }
+            });
+
+            cb(null, urls);
+        }else{
+            cb(null, urls);
+        }
+    });
+};
+
 var Search = mongoose.model('Search', SearchSchema);
 module.exports = Search;
 
