@@ -10,6 +10,8 @@
                 if($scope.mode === 'register'){
                     User.register($scope.user).then(function(response){
                         toastr.success('You have successfully registered.');
+
+
                         $scope.mode = 'login';
                         $state.go('login');
                     }, function(){
