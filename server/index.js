@@ -1,7 +1,7 @@
 'use strict';
 
 var Hapi       = require('hapi'),
-    server     = new Hapi.Server(process.env.PORT),
+    server     = new Hapi.Server('localhost', process.env.PORT),
     routes     = require('./routes/config/routes'),
     plugins    = require('./routes/config/plugins'),
     authentication = require('./routes/config/authentication'),
