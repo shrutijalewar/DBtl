@@ -1,3 +1,4 @@
+
 doctype html
 //if IE 9
   html.lt-ie10(lang='en')
@@ -25,6 +26,7 @@ html.no-js(ng-app='dbtl', lang='en')
             div(ui-view)
       footer
 
+
       script(src='/vendor/jquery/dist/jquery.min.js')
       script(src='/vendor/foundation/js/foundation.min.js')
       script(src='/vendor/foundation/js/foundation/foundation.topbar.js')
@@ -44,6 +46,9 @@ html.no-js(ng-app='dbtl', lang='en')
       script(src='/views/dashboard/dashboard.js')
       script(src='/components/factories/http-interceptor.js')
       script(src='/components/factories/user.js')
+      script(src='/components/factories/dashboard.js')
+      script(src='/components/factories/search.js')
+      script(src='/components/factories/message.js')
 
       script.
          $(document).foundation();
