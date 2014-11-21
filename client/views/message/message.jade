@@ -1,2 +1,20 @@
-h1 MESSAGE
+#message
+    .row
+        .medium-6.columns
+            img.msg-img
+        .medium-6.columns
+            fieldset
+                legend Send a Message
+                .row.collapse
+                    .small-3.large-2.columns
+                        .prefix To:
+                    .small-9.large-10.columns
+                        input(type="text")
+                .row.collapse
+                    .small-12.columns
+                        textarea(rows="10", placeholder="Your Message Here...")
+                .row.collapse
+                    .small-3.columns
+                        a(href="#" class="button postfix") Send
+
 
