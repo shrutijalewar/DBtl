@@ -8,5 +8,3 @@ module.exports = {
       reply.view('index.html');
     }
 };
-
-
