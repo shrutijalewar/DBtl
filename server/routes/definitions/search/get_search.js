@@ -2,29 +2,17 @@
 
 //var Joi = require('joi'),
 
-var Search = require('../../../models/search'),
-    Message = require('../../../models/message'),
-    userId = '000000000000000000000001';
+var Search = require('../../../models/search');
+    //userId = '000000000000000000000001';
 
 module.exports = {
-    description: 'All Searches',
-    notes: 'All Searches',
+    description: 'Get One Search',
+    notes: 'A Search',
     tags:['searches'],
     handler: function(request, reply){
-        Search.find(function(err, searches){
-            reply({searches:searches});
-
-        });
-    }
-};
-
-module.exports = {
-    description: 'All Messages',
-    notes: 'All Messages',
-    tags:['get','messages'],
-    handler: function(request, reply){
-        Message.find({toId: userId}, function(err, messages){
-            reply({messages:messages});
-        });
+        //Search.find(function(err, searches){
+        //    reply({searches:searches});
+        //});
+        reply();
     }
 };
