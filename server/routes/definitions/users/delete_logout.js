@@ -6,7 +6,7 @@ module.exports = {
     notes: 'Logout a User',
     tags: ['user', 'logout'],
     handler: function(request, reply){
-        request.auth.sessions.clear();
+        request.auth.session.clear();
         reply();
     }
 };

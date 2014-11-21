@@ -15,7 +15,6 @@
                 .state('profile',    {url:'/profile',            templateUrl:'views/profile/profile.html',          controller:'ProfileCtrl'})
                 .state('message',    {url:'/message',            templateUrl:'views/message/message.html',          controller:'MessageCtrl'})
                 .state('slideshow',  {url:'/slideshow',          templateUrl:'views/slideshow/slideshow.html',      controller:'SlideCtrl'});
-
             $localForageProvider.config({name:'dbtl', storeName:'cache', version:1.0});
         }]);
 })();
