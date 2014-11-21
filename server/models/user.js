@@ -14,7 +14,7 @@ UserSchema.methods.encrypt = function(){
 };
 
 UserSchema.statics.login  = function(obj, cb){
-    console.log('++++++++++++++++++oooo',obj.username);
+    console.log('+++++++++++++++++oooo',obj.username);
     User.findOne({username: obj.username}, function(err, user){
         console.log('++++++++++++++++++++++',user);
         if(user){

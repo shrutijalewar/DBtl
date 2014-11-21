@@ -7,7 +7,6 @@ var Hapi       = require('hapi'),
     authentication = require('./routes/config/authentication'),
     mongoose   = require('mongoose').connect(process.env.DB);
 
-
 mongoose.connection.once('open', function(){
   server.pack.register(plugins, function(){
       server.auth.strategy('session', 'cookie', true, authentication);
