@@ -10,7 +10,6 @@ module.exports = [
     {method: 'put',    path: '/profile',              config: require('./../definitions/users/put_profile')},
     {method: 'get',    path: '/dashboard',            config: require('./../definitions/dashboard/get_dashboard')},
     {method: 'post',   path: '/searches',             config: require('./../definitions/searches/post_searches')},
-    {method: 'get',    path: '/search',               config: require('./../definitions/search/get_search')},
     {method: 'delete', path: '/search/{id}',          config: require('./../definitions/search/delete_search')},
     {method: 'get',    path: '/slideshow/{searchId}', config: require('./../definitions/slideshow/get_slideshow')},
     {method: 'post',   path: '/messages',             config: require('./../definitions/messages/post_messages')}

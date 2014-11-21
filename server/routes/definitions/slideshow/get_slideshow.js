@@ -1,12 +1,18 @@
 'use strict';
 
-//var Joi = require('joi');
+//var Joi = require('joi'),
+
+//var Search = require('../../../models/search');
+//userId = '000000000000000000000001';
 
 module.exports = {
-    description: 'Slideshow',
-    notes: 'Show image slideshow',
-    tags: ['slideshow'],
+    description: 'Get One Search',
+    notes: 'A Search',
+    tags:['searches'],
     handler: function(request, reply){
-        reply('OK');
+        //Search.find(function(err, searches){
+        //    reply({searches:searches});
+        //});
+        reply();
     }
 };

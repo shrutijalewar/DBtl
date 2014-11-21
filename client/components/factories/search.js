@@ -8,14 +8,14 @@
                 return $http.post('/searches', search);
             }
 
-            function getById(id){
-                return $http.get('/search/' + id);
+            function getSlideshow(id){
+                return $http.get('/slideshow/' + id);
             }
 
             function remove(id){
                 return $http.delete('/search/' + id);
             }
 
-            return {create:create, getById:getById, remove:remove};
+            return {create:create, getSlideshow:getSlideshow, remove:remove};
         }]);
 })();
