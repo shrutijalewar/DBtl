@@ -1,19 +1,23 @@
 h1 REGISTER
 .row
-    .small-12.columns
+    .medium-2.columns
+    .medium-10.columns
         form
             .row
+                .small-2.columns
                 .small-6.columns
                     label(for='username') Username
                     input#username(type='text', name='username', ng-model='user.username', autofocus)
-                .small-6.columns
+                .small-4.columns
             .row
+                .small-2.columns
                 .small-6.columns
                     label(for='password') Password
                     input#password(type='password', name='password', ng-model='user.password')
+                .small-4.columns
+            .row
+                .small-2.columns
                 .small-6.columns
-        .row
-            .small-6.columns
-                button(ng-click='submit()') Register
-            .small-6.columns
+                    button(ng-click='submit()') Register
+                .small-4.columns
 
