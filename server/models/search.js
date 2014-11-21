@@ -1,11 +1,12 @@
 'use strict';
 
-var mongoose  = require('mongoose'),
-    request   = require('request').defaults({encoding: null}),
-    cheerio   = require('cheerio'),
-    async     = require('async'),
-    //url     = require('url'),
-    tagSrc    = [],
+var mongoose     = require('mongoose'),
+    request      = require('request').defaults({encoding: null}),
+    cheerio      = require('cheerio'),
+    async        = require('async'),
+    _            = require('underscore'),
+    url          = require('url'),
+    tagSrc       = [],
     SearchSchema = null;
 
  //Schema definition
@@ -51,16 +52,28 @@ SearchSchema.statics.crawlUrls = function(urls, index, depth, cb){
     request(urls[0], function(error, response, html){
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(html);
-            $('a').each(function () {
-                var tag = $(this).attr('href');
-                if (tag && tag.substring(0, 4) === 'http') {
-                    urls.push(tag);
-                }
-            });
 
-            cb(null, urls);
-        }else{
-            cb(null, urls);
+            if(depth - 1 > 0){
+                $('a').each(function(){
+                    var tag = $(this).attr('href');
+                    if (tag && tag.substring(0, 4) === 'http') {
+                        tag = url.parse(tag);
+                        urls.push(tag.protocol + tag.hostname);
+                    }
+                });
+            }
+
+            urls = _.uniq(urls);
+
+            if(index < urls.length - 1){
+                return urls;
+            }
+
+            if(depth > 0){
+                cb(Search.crawlUrls(urls, index + 1, depth - 1, function(response){
+                    console.log(response);
+                }));
+            }
         }
     });
 };
