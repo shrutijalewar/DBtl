@@ -5,6 +5,7 @@ module.exports = [
     {method: 'post',   path: '/register',             config: require('./../definitions/users/post_register')},
     {method: 'post',   path: '/login',                config: require('./../definitions/users/post_login')},
     {method: 'delete', path: '/logout',               config: require('./../definitions/users/delete_logout')},
+    {method: 'get',    path: '/status',               config: require('./../definitions/users/get_status')},
     {method: 'get',    path: '/profile',              config: require('./../definitions/users/get_profile')},
     {method: 'post',   path: '/profile',              config: require('./../definitions/users/post_profile')},
     {method: 'put',    path: '/profile',              config: require('./../definitions/users/put_profile')},
