@@ -5,7 +5,8 @@ var mongoose     = require('mongoose'),
     cheerio      = require('cheerio'),
     async        = require('async'),
     _            = require('underscore'),
-    imgCount        = null,
+    imgCount     = null,
+    imgs64       = [],
     url          = require('url'),
     SearchSchema = null;
 
@@ -65,21 +66,22 @@ SearchSchema.statics.crawl = function(urls, imgs, index, length, depth, cb){
         }
 
         if(index === length - 1 && depth - 1 === 0){
-            //console.log('mapping images');
-            //var q = async.queue(function(item, callback){
-            //    var self = this;
-            //    request(item, function(error, response, body){
-            //        if (!error) {
-            //            self.push('data:image/png;base64, ' + new Buffer(body).toString('base64'));
-            //        }
-            //        callback(self);
-            //    });
-            //}.bind(imgs64), 10);
-            //q.push(imgs);
-            //q.drain = function(){
-            //    console.log('queue', q.length());
-                cb(null, {'urls': urls, 'imgs': imgs});
-            //}
+            console.log('mapping images');
+            var q = async.queue(function(item, callback){
+                var self = this;
+                request(item, function(error, response, body){
+                    if (!error) {
+                        self.push('data:image/png;base64, ' + new Buffer(body).toString('base64'));
+                        callback();
+                    }else{
+                        callback();
+                    }
+                });
+            }.bind(imgs64), 10);
+            q.push(imgs);
+            q.drain = function(){
+                cb(null, {'urls': urls, 'imgs': imgs64});
+            }
         }
     });
 

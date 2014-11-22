@@ -12,5 +12,5 @@ s = {urls: ['http://windowworld.com'], imgs: [], depth: 3, userId: '000000000000
 
 Search.crawl(s.urls, [], 0, 1, s.depth, function(err, search){
     console.log('error', err);
-    console.log('final result', search);
+    console.log('final result', search.imgs.length);
 });
