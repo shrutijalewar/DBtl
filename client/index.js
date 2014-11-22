@@ -16,5 +16,10 @@
                 .state('message',    {url:'/message',            templateUrl:'views/message/message.html',          controller:'MessageCtrl'})
                 .state('slideshow',  {url:'/slideshow',          templateUrl:'views/slideshow/slideshow.html',      controller:'SlideCtrl'});
             $localForageProvider.config({name:'dbtl', storeName:'cache', version:1.0});
+        }])
+       .run(['$rootScope', '$http', function($rootScope, $http){
+             $http.get('/status').then(function(response){
+                    $rootScope.$broadcast('username', response.data.username);
+                  });
         }]);
 })();

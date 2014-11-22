@@ -2,7 +2,7 @@
     'use strict';
 
     angular.module('dbtl')
-        .controller('AuthCtrl', ['$scope', '$state', 'User',function($scope, $state, User){
+        .controller('AuthCtrl', ['$rootScope', '$scope', '$state', 'User',function($rootScope, $scope, $state, User){
             $scope.user = {};
             $scope.mode = $state.current.name;
 
@@ -20,6 +20,7 @@
                     });
                 }else{
                     User.login($scope.user).then(function(response){
+                        $rootScope.$broadcast('username', $scope.user.username);
                         toastr.success('You are logged in.');
                         $state.go('home');
                     }, function(){
