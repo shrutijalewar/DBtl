@@ -31,14 +31,12 @@
     .large-12.columns
         .medium-6.columns
             .top
-                h3 Previous Queries
+                .btn(ng-click="showCrawlerChart()") Previous Queries
                 ul
                     li Search 1
                     li Search 2
                     li Search 3
-                div
-                div(dbtl-charts, data="object")
-                div(dbtl-charts, data="object2")
+                div(dbtl-charts, data="chartsObject")
             .bottom
                 .graph
         .medium-6.columns
