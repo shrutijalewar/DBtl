@@ -8,9 +8,8 @@ module.exports = {
     notes: 'Show user profile',
     tags: ['user', 'profile'],
     handler: function(request, reply){
-        User.findById(request.auth.credentials._id, function(user){
+        User.findById(request.auth.credentials._id, function(err, user){
             reply(user);
-
         });
     }
 };

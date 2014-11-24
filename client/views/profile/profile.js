@@ -8,7 +8,7 @@
             $scope.hide = true;
             $scope.showCam = false;
             User.getProfile().then(function(response){
-                $scope.user = response.data;
+                if(response.data){$scope.user = response.data;}
             });
             var streaming = false,
                 video        = document.querySelector('#video'),
@@ -38,7 +38,7 @@
                     console.log('An error occured! ' + err);
                 }
             );
-            video.addEventListener('canplay', function(ev){
+            video.addEventListener('canplay', function(){
                 if (!streaming) {
                     height = video.videoHeight / (video.videoWidth/width);
                     video.setAttribute('width', width);
@@ -48,7 +48,7 @@
                     streaming = true;
                 }
             }, false);
-            $scope.takePicture = function(){
+            $scope.takePic = function(){
                 $scope.showCam = true;
                 canvas.width = width;
                 canvas.height = height;
@@ -61,6 +61,7 @@
             };
             $scope.savePic = function(){
                 User.updateProfile($scope.user).then(function(res){
+                    console.log('save response', res);
                 });
             };
             $scope.redo = function(){
