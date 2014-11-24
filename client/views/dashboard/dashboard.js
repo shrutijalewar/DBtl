@@ -2,7 +2,11 @@
     'use strict';
 
     angular.module('dbtl')
-        .controller('DashCtrl', ['$scope', 'Search', function($scope, Search){
+        .controller('DashCtrl', ['$scope', 'Search', 'Dashboard', function($scope, Search, Dashboard){
+
+            Dashboard.getDashboard().then(function(response){
+                console.log(response);
+            });
 
             //CRAWLER//
             $scope.search = {};

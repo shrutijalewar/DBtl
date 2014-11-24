@@ -3,28 +3,18 @@
 //var Joi = require('joi'),
 
 var Search = require('../../../models/search'),
-    Message = require('../../../models/message'),
-    userId = '000000000000000000000001';
+    Message = require('../../../models/message');
 
 module.exports = {
-    description: 'All Searches',
-    notes: 'All Searches',
-    tags:['searches'],
+    description: 'Get Dashboard',
+    notes: 'Retrieves all user messages and searches',
+    tags:['searches', 'messages'],
     handler: function(request, reply){
-        Search.find(function(err, searches){
-            reply({searches:searches});
-
-        });
-    }
-};
-
-module.exports = {
-    description: 'All Messages',
-    notes: 'All Messages',
-    tags:['get','messages'],
-    handler: function(request, reply){
-        Message.find({toId: userId}, function(err, messages){
-            reply({messages:messages});
+        console.log(request.auth.credentials._id);
+        Search.find({userId: request.auth.credentials._id}, function(err, searches){
+            Message.find({toId: request.auth.credentials._id}, function(err, messages){
+                reply({messages:messages, searches:searches});
+            });
         });
     }
 };
