@@ -10,7 +10,8 @@
             }
 
             function getSlideshow(id){
-                return $http.get('/slideshow/' + id);
+                //return $http.get('/slideshow/' + id);
+                return $http.get('data/slideshow.json');
             }
 
             function remove(id){

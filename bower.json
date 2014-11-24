@@ -26,7 +26,8 @@
     "underscore": "~1.7.0",
     "jquery": "~2.1.1",
     "toastr": "~2.1.0",
-    "webcam-directive": "~1.2.0"
+    "webcam-directive": "~1.2.0",
+    "lightbox2": "~2.7.1"
   },
   "resolutions": {
     "angular": "~1.0.5"

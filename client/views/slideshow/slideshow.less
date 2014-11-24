@@ -1,1 +1,37 @@
-//@import'../../variables.less';
+@import '../../variables.less';
+#slideshow {
+  height: 800px;
+  width: 100%;
+  background-color: @verywhite;
+  padding: 40px;
+
+  h3 {
+    color: @lite-green;
+    font-weight: @lite-wt-font;
+  }
+
+  .dung {
+    display: inline-block;
+    max-height: 200px;
+    min-width: 100px;
+    max-width: 300px;
+    margin: 20px;
+    text-align: center;
+    border: 2px solid #D0BEA9;
+    position: relative;
+
+    img {
+      text-align: center;
+    }
+
+    a {
+      position: absolute;
+      bottom: 0;
+      right:0;
+
+      width: 30px;
+      color: @very-white;
+      background-color: rgba(240,240,240, 0.4);
+    }
+  }
+}
