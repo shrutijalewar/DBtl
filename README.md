@@ -7,7 +7,7 @@ DBtl
 This a good-looking web crawler application that will crawl a website for you and return with the images found on the webpage. It will then show you the found images in a snazzy slideshow. It is built with Angular.js and Foundations 5 on the front-end and Hapi.js, Node.js, and Mongoose.js on the back-end.
 
 ### Screenshots
-![Image1](https://raw.githubusercontent.com/shrutijalewar/DBtl/master/docs/screenshots/one.jpg)
+![Image1](https://raw.githubusercontent.com/shrutijalewar/DBtl/master/docs/screenshots/one.png)
 
 ### Features
 
