@@ -24,7 +24,6 @@ var mongoose     = require('mongoose'),
 SearchSchema.statics.crawl = function(urls, imgs, index, length, depth, cb){
     imgCount = 0;
     console.log('index', index, 'length', length, 'depth', depth);
-    console.log('length', urls.length);
 
     request(urls[index], function(error, response, html){
         // request errors out around index 100...how to slow down the requests?
@@ -42,7 +41,7 @@ SearchSchema.statics.crawl = function(urls, imgs, index, length, depth, cb){
                 imgs = _.uniq(imgs);
             });
 
-            if (depth - 1 > 0/* && urls.length < 80*/) { //limit of 80 due to machine processing power
+            if (depth - 1 > 0 && urls.length < 80) { //limit of 80 due to machine processing power
                 $('a').each(function(){
                     var tag = $(this).attr('href');
                     if (tag && tag.substring(0, 4) === 'http') {
@@ -101,13 +100,3 @@ function makeUrlObj(urls, index, depth, imgCount){
     urls.splice(index, 1, urlObj);
     return urls;
 }
-
-//function iterateImgs(item, callback){
-//    request.get(item, function(error, response, body){
-//
-//        if (!error) {
-//            item = 'data:image/png;base64, ' + new Buffer(body).toString('base64');
-    //    }
-    //    callback(item);
-    //});
-//}
