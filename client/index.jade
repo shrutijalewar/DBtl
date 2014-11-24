@@ -1,3 +1,4 @@
+
 doctype html
 //if IE 9
   html.lt-ie10(lang='en')
@@ -11,7 +12,9 @@ html.no-js(ng-app='dbtl', lang='en')
       link(href='/vendor/foundation/css/foundation.css', rel='stylesheet')
       link(href='/vendor/fontawesome/css/font-awesome.min.css', rel='stylesheet')
       link(href='/vendor/toastr/toastr.min.css', rel='stylesheet')
+      link(href='/vendor/lightbox2/css/lightbox.css', rel='stylesheet')
       link(href='/index.css', rel='stylesheet')
+      link(href='/views/dashboard/dashboard.css', rel='stylesheet')
       script(src='/vendor/foundation/js/vendor/modernizr.js')
    body
       .row
@@ -22,15 +25,18 @@ html.no-js(ng-app='dbtl', lang='en')
             div(ui-view)
       footer
 
+
       script(src='/vendor/jquery/dist/jquery.min.js')
       script(src='/vendor/foundation/js/foundation.min.js')
       script(src='/vendor/foundation/js/foundation/foundation.topbar.js')
       script(src='/vendor/angular/angular.min.js')
-      script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
       script(src='/vendor/localforage/dist/localforage.min.js')
       script(src='/vendor/angular-localforage/dist/angular-localForage.min.js')
+      script(src='/vendor/angular-ui-router/release/angular-ui-router.min.js')
+      script(src='/vendor/amcharts/amcharts.js')
+      script(src='/vendor/amcharts/serial.js')
       script(src='/vendor/toastr/toastr.min.js')
-
+      script(src='/vendor/lightbox2/js/lightbox.min.js')
       script(src='/config/toastr.js')
       script(src='/index.js')
       script(src='/nav.js')
@@ -42,6 +48,12 @@ html.no-js(ng-app='dbtl', lang='en')
       script(src='/views/dashboard/dashboard.js')
       script(src='/components/factories/http-interceptor.js')
       script(src='/components/factories/user.js')
+      script(src='/components/factories/dashboard.js')
+      script(src='/components/factories/search.js')
+      script(src='/components/factories/message.js')
+      script(src='/components/directives/dbtl-charts/dbtl-charts.js')
+      script(src='/components/directives/dbtl-crawler-charts/dbtl-crawler-charts.js')
+
 
       script.
          $(document).foundation();

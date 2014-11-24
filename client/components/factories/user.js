@@ -27,6 +27,7 @@
                 broadcast(email);
                 return $localForage.setItem('email', email);
             }
+
             function register(user){
                 return $http.post('/register', user);
             }
@@ -35,7 +36,6 @@
                 return $http.post('/login', user).then(function(response){
                     return setEmail(response.data.email);
                 });
-
             }
 
             function logout(){
@@ -44,8 +44,30 @@
                 });
             }
 
+            function createProfile(user){
+                return $http.post('/profile', user);
+            }
+
+            function getProfile(){
+                return $http.get('/profile');
+            }
+
+            function updateProfile(user){
+                return $http.put('/profile', user);
+            }
+
             getEmailFromStorage();
 
-            return {getEmail:getEmail, setEmail:setEmail, register:register, login:login, logout:logout, getEmailFromStorage:getEmailFromStorage};
+            return {
+                     getEmail            : getEmail,
+                     setEmail            : setEmail,
+                     register            : register,
+                     login               : login,
+                     logout              : logout,
+                     getEmailFromStorage : getEmailFromStorage,
+                     createProfile       : createProfile,
+                     getProfile          : getProfile,
+                     updateProfile       : updateProfile
+                   };
         }]);
 })();

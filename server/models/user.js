@@ -6,7 +6,8 @@ var mongoose   = require('mongoose'),
     UserSchema = new mongoose.Schema({
     username:  {type: String, required: true, validate: [usernameV, 'username length'], unique: true},
     password:  {type: String, required: true, validate: [passwordV, 'password length']},
-    createdAt: {type: Date,  required: true, default: Date.now}
+    createdAt: {type: Date,  required: true, default: Date.now},
+    profilePic: {type: String}
     });
 
 UserSchema.methods.encrypt = function(){
@@ -14,7 +15,7 @@ UserSchema.methods.encrypt = function(){
 };
 
 UserSchema.statics.login  = function(obj, cb){
-    console.log('++++++++++++++++++oooo',obj.username);
+    console.log('+++++++++++++++++oooo',obj.username);
     User.findOne({username: obj.username}, function(err, user){
         console.log('++++++++++++++++++++++',user);
         if(user){
