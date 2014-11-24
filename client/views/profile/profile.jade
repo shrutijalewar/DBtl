@@ -7,11 +7,11 @@
 .row
     .small-4.columns
     .small-4.columns(ng-hide='showCam')
-        button#startbutton(ng-hide='showCam', ng-click='takePicture()') Take Photo
+        button#startbutton(ng-hide='showCam', ng-click='takePic()') Take Photo
     .small-2.columns(ng-show='showCam')
-        button#savebutton(ng-show='showCam', ng-click='savePicture()') Save
+        button#savebutton(ng-show='showCam', ng-click='savePic()') Save
     .small-2.columns(ng-show='showCam')
-        button#retakebutton(ng-show='showCam', ng-click='retake()') Retake
+        button#retakebutton(ng-show='showCam', ng-click='redo()') Take Again
     .small-4.columns
 canvas#canvas(ng-hide='hide')
 

@@ -63,7 +63,7 @@
                 User.updateProfile($scope.user).then(function(res){
                 });
             };
-            $scope.retake = function(){
+            $scope.redo = function(){
                 $scope.ShowCam=false;
             };
         }]);
