@@ -1,1 +1,6 @@
-h1 SLIDESHOW
+#slideshow
+    h3 Your Dung Collection:
+    .dung(ng-repeat='img in imgs')
+        img(ng-src="{{img}}" data-lightbox="slider")
+        a(href="#", title='Share This'): i.fa.fa-share
+

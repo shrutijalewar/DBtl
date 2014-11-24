@@ -5,12 +5,13 @@ var mongoose     = require('mongoose'),
     cheerio      = require('cheerio'),
     async        = require('async'),
     _            = require('underscore'),
+    imgCount     = null,
+    imgs64       = [],
     url          = require('url'),
-    tagSrc       = [],
     SearchSchema = null;
 
- //Schema definition
-    SearchSchema = new mongoose.Schema({
+//Schema definition
+SearchSchema = new mongoose.Schema({
     urls: {type: Array, required: true},
     imgs: {type: Array, required: true},
     userId: {
@@ -20,96 +21,82 @@ var mongoose     = require('mongoose'),
     }
 });
 
-SearchSchema.statics.crawl = function(urls, imgs, index, depth, cb){
-    //console.log(urls, imgs, index, depth);
-    request(urls[0], function(error, response, html){
+SearchSchema.statics.crawl = function(urls, imgs, index, length, depth, cb){
+    imgCount = 0;
+    console.log('index', index, 'length', length, 'depth', depth);
+
+    request(urls[index], function(error, response, html){
+        // request errors out around index 100...how to slow down the requests?
         if (!error && response.statusCode === 200) {
             var $ = cheerio.load(html);
+
             $('img').each(function(){
+                imgCount ++;
                 var image = $(this).attr('src');
+
                 if(image && image.substring(0,4) === 'http'){
                     imgs.push(image);
                 }
-            });
-            $('a').each(function(){
-                var tag = $(this).attr('href');
-                if (tag && tag.substring(0, 4) === 'http'){
-                    tagSrc.push(tag);
-                }
-            });
-            //console.log('tags>>>>>', tagSrc);
-        }
-        //console.log(imgs);
-        async.map(imgs, iterateImgs, function(err, images){
-            //console.log('images', images);
-            //console.log('map', urls, images, index, depth);
-            cb(null, {urls: urls, imgs: images, index: index, depth: depth});
-        });
-    });
-};
 
-SearchSchema.statics.crawlUrls = function(urls, index, depth, cb){
-    request(urls[0], function(error, response, html){
-        if (!error && response.statusCode === 200) {
-            var $ = cheerio.load(html);
+                imgs = _.uniq(imgs);
+            });
 
-            if(depth - 1 > 0){
+            if (depth - 1 > 0 && urls.length < 80) { //limit of 80 due to machine processing power
                 $('a').each(function(){
                     var tag = $(this).attr('href');
                     if (tag && tag.substring(0, 4) === 'http') {
                         tag = url.parse(tag);
-                        urls.push(tag.protocol + tag.hostname);
+                        urls.push(tag.protocol + '//' + tag.hostname);
                     }
+
+                    urls = _.uniq(urls);
                 });
             }
+        }
 
-            urls = _.uniq(urls);
+        urls = makeUrlObj(urls, index, depth, imgCount);
 
-            if(index < urls.length - 1){
-                return urls;
-            }
+        if(index === length - 1 && depth > 1){
+            SearchSchema.statics.crawl(urls, imgs, index + 1, urls.length, depth - 1, cb);
+        }
 
-            if(depth > 0){
-                cb(SearchSchema.statics.crawlUrls(urls, index + 1, depth - 1, function(response){
-                    console.log(response);
-                }));
-            }
+        if(index < length - 1){
+            SearchSchema.statics.crawl(urls, imgs, index + 1, length, depth, cb);
+        }
+
+        if(index === length - 1 && depth - 1 === 0){
+            console.log('mapping images');
+            var q = async.queue(function(item, callback){
+                var self = this;
+                request(item, function(error, response, body){
+                    if (!error) {
+                        self.push('data:image/png;base64, ' + new Buffer(body).toString('base64'));
+                        callback();
+                    }else{
+                        callback();
+                    }
+                });
+            }.bind(imgs64), 10);
+            q.push(imgs);
+            q.drain = function(){
+                cb(null, {'urls': urls, 'imgs': imgs64});
+            };
         }
     });
+
 };
 
 var Search = mongoose.model('Search', SearchSchema);
 module.exports = Search;
 
-function iterateImgs(item, cb){
-    request.get(item, function(error, response, body){
-        if (!error) {
-            cb(null, 'data:image/png;base64, ' + new Buffer(body).toString('base64'));
-        }
-    });
-}
 
-//------------------------ NOTES -------------------------//
-/*
- * crawl (urls, imgs, index, depth, cb)
- *   decrement depth
- *
- *   find all images and push to end of imgs
- *       select
- *       parse
- *       convert
- *       push
- *
- *   if depth > 0
- *      find all links on the page
- *      massage links: {url: name, imgs: null}
- *      splice into array after current index
- *
- *   if index < urls.length - 1
- *   loop array from index to length - 1
- *       crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, dept decrement deloop array from index to length - 1*crawl (urls, imgs, index, depth - 1)
- *       push url and photo number and depths onto links array
- *
- *   if index === urls.length && depth === 0
- *       execute final callback({urls, imgs})
- */
+function makeUrlObj(urls, index, depth, imgCount){
+    var urlObj = {
+        url: urls[index],
+        imgs: imgCount,
+        depth:depth
+    };
+
+    urls.splice(index, 1, urlObj);
+    return urls;
+}
