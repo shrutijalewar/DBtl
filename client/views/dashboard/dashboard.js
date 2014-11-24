@@ -6,11 +6,10 @@
 
             //CHARTS//
             $scope.seeds = ['123456', '7777777', '006767'];
+
             //initialize//
             $scope.seedChart = {};
             $scope.crawlerChart = {};
-
-
 
             //create chart objects
             $scope.seedChart.chartSettings= {
@@ -40,6 +39,7 @@
                 graphInfo: 'Images Per Url',
                 chartTitle: 'Crawler'
             };
+
             $scope.crawlerChart.chartSearch = [{
                 'url': 'www.cnn.com',
                 'images': 4252
@@ -50,7 +50,6 @@
                 'url': 'www.vox.com',
                 'images': 1809
             }];
-
 
 
             //demo data for showing a crawler chart switch//
@@ -74,7 +73,6 @@
                 //set $scope.crawlerChart.chartSettings.chartTitle = $scope.retrievedChartSettingsTitle
                 $scope.crawlerChart.chartSearch = $scope.someChartSearch;
                 $scope.crawlerChart.chartSettings.chartTitle = $scope.someChartSettingsTitle;
-
             };
         }]);
 })();

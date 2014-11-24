@@ -51,7 +51,7 @@
     .large-12.columns
         .top
             li(ng-repeat='seed in seeds')
-                h4(ng-click='showCrawlerChart(seed)') {{seed}}
+                a(href='', ng-click='showCrawlerChart(seed)') {{seed}}
             //select
             //    option(ng-repeat="seed in seeds", ng-click="showCrawlerChart()") {{seed}}
         .medium-6.columns
