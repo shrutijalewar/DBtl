@@ -1,16 +1,24 @@
 'use strict';
 
-var Search  = require('../../models/search'),
-    s       = null,
-    async   = require('async');
+var Search   = require('../../models/search'),
+    mongoose = require('mongoose'),
+    request  = {};
 
-s = {urls: ['http://windowworld.com'], imgs: [], depth: 3, userId: '000000000000000000000001'};
+request.auth = {};
+request.auth.credentials = {};
+request.auth.credentials._id = mongoose.Types.ObjectId('546d1c91c4f9f2a15a5655a3');
+request.payload = {url: 'http://windowworld.com', depth: 3};
 
-//Search.crawl(s.urls, s.imgs, 0, 3, function(err, search){
-    //console.log('search', search);
-//});
+Search.crawl([request.payload.url], [], 0, 1, request.payload.depth, function(err, result){
+    result.userId = request.auth.credentials._id;
+    console.log('saving to db');
+    Search.create(result, function(err, search){
+        console.log('error', err);
+        console.log('saved search: ', search);
+    });
+});
 
-Search.crawl(s.urls, [], 0, 1, s.depth, function(err, search){
+Search.create({urls: ['a'], imgs: ['jpg'], userId: request.auth.credentials._id}, function(err, search){
     console.log('error', err);
-    console.log('final result', search.imgs.length);
+    console.log('search', search);
 });

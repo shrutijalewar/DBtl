@@ -1,7 +1,7 @@
 #!/bin/sh
 
 echo -e "\nhome page"
-curl -s localhost:8080
+curl -s http://localhost:5656/
 #
 #echo -e "\nregister page"
 #curl -s -X POST -H "Content-Type: application/json" -d '{"email":"bob@aol.com", "password": "1234"}' localhost:8080/register
@@ -22,7 +22,7 @@ curl -s localhost:8080
 #curl -s localhost:8080/dashboard
 
 #echo -e "\npost a search"
-#curl -s -X POST -H "Content-Type: application/json" -d '{"url":"www.cnn.com", "depth": "2"}' localhost:8080/search
+#curl -s -X POST -H "Content-Type: application/json" -d '{"url":"http://windowworld.com", "depth": "3"}' http://localhost:5656/searches
 
 #echo -e "\ndelete a search"
 #curl -s -X DELETE localhost:8080/search/idnumbergoeshere

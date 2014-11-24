@@ -10,17 +10,17 @@
                         .small-3.large-2.columns
                             .prefix http://
                         .small-9.large-10.columns
-                            input(type="text", placeholder="Enter your URL...")
+                            input(type="text", placeholder="Enter your URL...", ng-model="search.url")
                     .row.collapse.postfix-round
                         .small-9.large-9.columns
-                            select
+                            select(ng-model="search.depth")
                                 option(value="") Depth of Inception
                                 option(value="1") 1
                                 option(value="2") 2
                                 option(value="3") 3
                                 option(value="4") 4
                         .small-3.columns
-                            a(href="#" class="button postfix") Add
+                            a(href="#" class="button postfix", ng-click="startSearch()") Add
 
         .medium-6.columns
             .large-6.columns.greeting

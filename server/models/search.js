@@ -81,7 +81,7 @@ SearchSchema.statics.crawl = function(urls, imgs, index, length, depth, cb){
             q.push(imgs);
             q.drain = function(){
                 cb(null, {'urls': urls, 'imgs': imgs64});
-            }
+            };
         }
     });
 

@@ -5,6 +5,7 @@
         .factory('Search', ['$http', function($http){
 
             function create(search){
+                console.log('search submission', search);
                 return $http.post('/searches', search);
             }
 
