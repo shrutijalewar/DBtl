@@ -36,12 +36,12 @@ request
 
 ### Contributors
  
-Shruti Sharma
-Kayla Jones
-Daniel Roden
-Brian Hiatt
-Dennis Stanley
-Juan Rodriguez
+-Shruti Sharma
+-Kayla Jones
+-Daniel Roden
+-Brian Hiatt
+-Dennis Stanley
+-Juan Rodriguez
 
 ### License
 [MIT](LICENSE)
