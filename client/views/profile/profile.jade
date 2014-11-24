@@ -10,9 +10,25 @@
         button#startbutton(ng-hide='showCam', ng-click='takePic()') Take Photo
     .small-2.columns(ng-show='showCam')
         button#savebutton(ng-show='showCam', ng-click='savePic()') Save
-    .small-2.columns(ng-show='showCam')
-        button#retakebutton(ng-show='showCam', ng-click='redo()') Take Again
+    //.small-2.columns(ng-show='showCam')
+        button#retakebutton(ng-show='showCam', ng-click='retake()') Retake
     .small-4.columns
-canvas#canvas(ng-hide='hide')
+canvas#canvas(ng-hide='hideCanvas')
 
 img(src='{{user.profilePic}}', style='width: 200px')
+
+form
+    .row
+        .small-6.columns
+            label(for='username') Username
+            input#username(type='text', name='username', ng-model='user.username', autofocus)
+        .small-6.columns
+    .row
+        .small-6.columns
+            label(for='password') Password
+            input#password(type='password', name='password', ng-model='user.password')
+        .small-6.columns
+    .row
+        .small-6.columns
+            button(ng-click='updateProfile()') Update your profile
+        .small-6.columns

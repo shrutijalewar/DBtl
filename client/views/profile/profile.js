@@ -5,7 +5,7 @@
         .controller('ProfileCtrl', ['$scope', 'User', function($scope, User){
 
             $scope.user ={};
-            $scope.hide = true;
+            $scope.hideCanvas = true;
             $scope.showCam = false;
             User.getProfile().then(function(response){
                 if(response.data){$scope.user = response.data;}
@@ -56,7 +56,7 @@
                 photo.height = height;
                 canvas.getContext('2d').drawImage(video, 0, 0, width, height);
                 var data = canvas.toDataURL('image/png');
-                $scope.user.profilePic = data;
+                $scope.user.pic = data;
                 photo.setAttribute('src', data);
             };
             $scope.savePic = function(){
@@ -67,6 +67,11 @@
             $scope.redo = function(){
                 $scope.ShowCam=false;
             };
+
+            $scope.updateProfile = function(){
+                User.updateProfile($scope.user).then(function(res){
+                    toastr.success('Profile Updated');
+                });
+            };
         }]);
 })();
-

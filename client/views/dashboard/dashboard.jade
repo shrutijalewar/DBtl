@@ -24,10 +24,10 @@
 
         .medium-6.columns
             .large-6.columns.greeting
-                h2 Hey Username!
+                h2 hey {{user.username}}
                 h3 Let's get Crawling!
             .large-6.columns.profile-pic
-                img(src='', alt='')
+                img(src='{{user.profilePic}}', alt='', style='width: 200px')
     .large-12.columns
         .medium-6.columns
             .top
