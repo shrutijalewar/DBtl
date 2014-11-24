@@ -1,5 +1,18 @@
-h1 PROFILE
-video#video
-button#startbutton(ng-click='takePicture()') Snapshot
-canvas#canvas
-#photo(ng-src='http://static.ddmcdn.com/gif/recipes/dung-beetle-why-poop-cool-feet-protect-121023-678981-.jpg')
+.row
+    .small-4.columns
+    .small-4.columns
+        video#video(ng-hide='showCam')
+        img#photo(ng-show='showCam')
+    .small-4.columns
+.row
+    .small-4.columns
+    .small-4.columns(ng-hide='showCam')
+        button#startbutton(ng-hide='showCam', ng-click='takePicture()') Take Photo
+    .small-2.columns(ng-show='showCam')
+        button#savebutton(ng-show='showCam', ng-click='savePicture()') Save
+    .small-2.columns(ng-show='showCam')
+        button#retakebutton(ng-show='showCam', ng-click='retake()') Retake
+    .small-4.columns
+canvas#canvas(ng-hide='hide')
+
+img(src='{{user.profilePic}}', style='width: 200px')

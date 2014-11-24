@@ -70,7 +70,7 @@ SearchSchema.statics.crawlUrls = function(urls, index, depth, cb){
             }
 
             if(depth > 0){
-                cb(Search.crawlUrls(urls, index + 1, depth - 1, function(response){
+                cb(SearchSchema.statics.crawlUrls(urls, index + 1, depth - 1, function(response){
                     console.log(response);
                 }));
             }
