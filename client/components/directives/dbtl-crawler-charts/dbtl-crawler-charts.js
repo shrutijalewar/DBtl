@@ -3,12 +3,12 @@
 (function(){
     'use strict';
 
-    angular.module('dbtlChartsModule', [])
-        .directive('dbtlCharts', [function(){
+    angular.module('dbtlCrawlerChartModule', [])
+        .directive('dbtlCrawlerCharts', [function(){
             var o = {};
 
             o.restrict    = 'A';
-            o.templateUrl = '/components/directives/dbtl-charts/dbtl-charts.html';
+            o.templateUrl = '/components/directives/dbtl-crawler-charts/dbtl-crawler-charts.html';
             o.scope       = {data:'='};
             o.link        = function(scope, element, attrs){
 
@@ -19,25 +19,25 @@
 
                 $scope.initChart = function(data){
 
-                    var chart = false,
-                        cData = $scope.data.chartSearch,
-                        cField = $scope.data.chartSettings.categoryField,
-                        vField = $scope.data.chartSettings.valueField,
-                        vAxes = $scope.data.chartSettings.valueAxes,
-                        graphInfo = $scope.data.chartSettings.graphInfo,
-                        chartTitle = $scope.data.chartSettings.chartTitle;
+                    var crawlerChart = false,
+                        cData2 = $scope.data.chartSearch,
+                        cField2 = $scope.data.chartSettings.categoryField,
+                        vField2 = $scope.data.chartSettings.valueField,
+                        vAxes2 = $scope.data.chartSettings.valueAxes,
+                        graphInfo2 = $scope.data.chartSettings.graphInfo,
+                        chartTitle2 = $scope.data.chartSettings.chartTitle;
 
-                    chart = AmCharts.makeChart('chartdiv', {
+                    crawlerChart = AmCharts.makeChart('crawlerChart', {
 
                         'type': 'serial',
-                        'categoryField': cField,
+                        'categoryField': cField2,
                         'categoryAxis': {
                             'gridPosition': 'start'
                         },
                         'graphs': [
                             {
-                                'title': graphInfo,
-                                'valueField': vField,
+                                'title': graphInfo2,
+                                'valueField': vField2,
                                 'type': 'line',
                                 'fillAlphas' : 0.5,
                                 'bullet' : 'round',
@@ -46,7 +46,7 @@
                         ],
                         'valueAxes': [
                             {
-                                'title': vAxes
+                                'title': vAxes2
                             }
                         ],
                         'legend': {
@@ -55,15 +55,16 @@
                         'titles': [
                             {
                                 'size': 15,
-                                'text': chartTitle
+                                'text': chartTitle2
                             }
                         ],
-                        'dataProvider': cData
+                        'dataProvider': cData2
                     });
+
                 };
+
                 $scope.$watch('data', function(newValue, oldValue){
                     if (newValue) {
-
                         $scope.initChart(newValue);
                         console.log(newValue, oldValue);
                     }
@@ -72,5 +73,4 @@
             return o;
         }]);
 })();
-
 

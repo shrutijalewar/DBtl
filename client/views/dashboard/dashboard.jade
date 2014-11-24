@@ -31,14 +31,10 @@
     .large-12.columns
         .medium-6.columns
             .top
-                h3 Previous Queries
                 ul
                     li Search 1
                     li Search 2
                     li Search 3
-                div
-                div(dbtl-charts, data="object")
-                div(dbtl-charts, data="object2")
             .bottom
                 .graph
         .medium-6.columns
@@ -52,6 +48,20 @@
                 ul
                     li Message 1
                     li Message 2
+    .large-12.columns
+        .top
+            li(ng-repeat='seed in seeds')
+                h4(ng-click='showCrawlerChart(seed)') {{seed}}
+            //select
+            //    option(ng-repeat="seed in seeds", ng-click="showCrawlerChart()") {{seed}}
+        .medium-6.columns
+            div(dbtl-charts, data="seedChart")
+        .medium-6.columns
+            div(dbtl-crawler-charts, data="crawlerChart")
+
+
+
+
 
 
 
