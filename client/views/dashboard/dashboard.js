@@ -6,14 +6,13 @@
 
             //CRAWLER//
             $scope.search = {};
-  
             $scope.startSearch = function(){
                 $scope.search.url = 'http://' + $scope.search.url;
                 Search.create($scope.search).then(function(response){
                     console.log(response);
                 });
             };
-        
+
             //CHARTS//
             $scope.seeds = ['123456', '7777777', '006767'];
 
