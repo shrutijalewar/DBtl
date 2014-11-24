@@ -10,7 +10,6 @@ module.exports = {
     notes: 'Retrieves all user messages and searches',
     tags:['searches', 'messages'],
     handler: function(request, reply){
-        console.log(request.auth.credentials._id);
         Search.find({userId: request.auth.credentials._id}, function(err, searches){
             Message.find({toId: request.auth.credentials._id}, function(err, messages){
                 reply({messages:messages, searches:searches});
